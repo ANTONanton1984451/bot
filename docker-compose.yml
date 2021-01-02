@@ -11,6 +11,8 @@ services:
           - fpm
         volumes:
           - ./ :/var/www/laravel-docker
+        networks:
+          - internal
   fpm:
     build:
         context: .
@@ -19,6 +21,13 @@ services:
        - ./:/var/www/laravel-docker
     links:
       - mysql
+    environment:
+      XDEBUG_CONFIG: "remote_host=host.docker.internal
+      remote_enable=1"
+      PHP_IDE_CONFIG: "serverName=Docker"
+    networks:
+      - internal
+
   mysql:
        image: mysql:5.7
        ports:
@@ -28,6 +37,12 @@ services:
          - MYSQL_DATABASE=bot
          - MYSQL_USER=root
          - MYSQL_PASSWORD=root
-
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet : 192.168.220.0/28
 
 
