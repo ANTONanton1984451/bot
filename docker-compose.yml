@@ -25,8 +25,9 @@ services:
        - 33062:3306
        environment:
          - MYSQL_ROOT_PASSWORD=root
-         - MYSQL-DATABASE=laravel
-
+         - MYSQL_DATABASE=bot
+         - MYSQL_USER=root
+         - MYSQL_PASSWORD=root
 
 
 
