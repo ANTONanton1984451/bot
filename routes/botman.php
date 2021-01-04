@@ -3,6 +3,10 @@ use App\Http\Controllers\BotManController;
 
 $botman = resolve('botman');
 
+$botman->hears('/start',\App\Http\Controllers\IntroductionController::class.'@startIntroduction');
+
+
+
 $botman->hears('Hi', function ($bot) {
     $bot->reply(file_get_contents('https://yandex.ru'));
 });
@@ -19,6 +23,8 @@ $botman->hears('Hello BotMan!', function($bot) {
 
 $botman->hears('Start conversation', BotManController::class.'@startConversation');
 
-$botman->hears('Remember me',\App\Http\Controllers\TestController::class.'@rememberUser');
 
-$botman->hears('How old {name}',\App\Http\Controllers\TestController::class.'@showAges');
+
+$botman->fallback(function ($bot) {
+   $bot->reply('i dont understand u');
+});
