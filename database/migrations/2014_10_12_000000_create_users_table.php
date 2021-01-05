@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->integer('id');
             $table->string('first_name');
             $table->string('username')->nullable();
+            $table->tinyInteger('days_count')->default('1');
             $table->boolean('is_bot');
             $table->float('longitude');
             $table->float('latitude');

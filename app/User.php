@@ -20,6 +20,7 @@ class User extends Authenticatable
         'first_name',
         'username',
         'is_bot',
+        'days_count',
         'longitude',
         'latitude'
     ];

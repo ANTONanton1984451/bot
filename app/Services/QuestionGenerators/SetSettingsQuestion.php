@@ -11,8 +11,8 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 
 class SetSettingsQuestion implements QuestionGenerator
 {
-    private const GREETING= 'bot_phrases.introduction.greeting';
-    private const SET_SETTINGS_SUGGESTION = 'bot_phrases.introduction.set_settings_suggestion';
+    private const GREETING= self::BOT_CONFIG.'.introduction.greeting';
+    private const SET_SETTINGS_SUGGESTION = self::BOT_CONFIG.'.introduction.set_settings_suggestion';
 
     private $botMan;
 

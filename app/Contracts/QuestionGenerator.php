@@ -9,7 +9,6 @@ use BotMan\BotMan\Messages\Outgoing\Question;
 
 interface QuestionGenerator
 {
-    public function __construct(BotMan $bot);
-
+    public const BOT_CONFIG = 'bot_phrases';
     public function getQuestion():Question;
 }

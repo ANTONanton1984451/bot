@@ -5,7 +5,7 @@ $botman = resolve('botman');
 
 $botman->hears('/start',\App\Http\Controllers\IntroductionController::class.'@startIntroduction');
 
-
+$botman->hears('/weather',\App\Http\Controllers\GetWeatherController::class.'@showWeather');
 
 $botman->hears('Hi', function ($bot) {
     $bot->reply(file_get_contents('https://yandex.ru'));
