@@ -38,6 +38,7 @@ class UserDeterminant
 
     private function getUserId() : int
     {
+
         //todo Поменять при деплое ларавеля
 //        return  $this->bot->getUser()->getId();
         return env('DEV_USER_ID');

@@ -10,7 +10,11 @@
         |
         |
          */
+
+const PLACEHOLDER = '%';
+
 return [
+    'placeholder' => PLACEHOLDER,
 
     'introduction' => [
 
@@ -30,5 +34,30 @@ return [
 
         'location' => 'Скинь мне свою геопозицию'
 
-    ]
+    ],
+
+    'one_day_message' => [
+
+        'hour' => 'Время : '.PLACEHOLDER,
+
+        'temp' => 'Температура :'.PLACEHOLDER,
+
+        'temp_like' => 'Ощущается как :'.PLACEHOLDER,
+
+        'condition' => 'За окном '.PLACEHOLDER,
+
+
+    ],
+
+    'part_of_day_message' => [
+
+        'part_of_day' => PLACEHOLDER.' :',
+
+        'date' => PLACEHOLDER,
+
+        'temp_avg' => 'Средняя температура :'.PLACEHOLDER,
+
+        'temp_like' => 'Ощущается как :'.PLACEHOLDER,
+
+    ],
 ];

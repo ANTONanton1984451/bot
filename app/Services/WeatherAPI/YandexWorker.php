@@ -7,15 +7,16 @@ namespace App\Services\WeatherAPI;
 use App\Contracts\APIWorker;
 use App\Contracts\Weather;
 use App\DataObjects\YandexWeather;
-use GuzzleHttp\Client;
+use App\Services\CustomHttpClient;
+
 
 class YandexWorker implements APIWorker
 {
     private const YANDEX_API_URL = 'https://api.weather.yandex.ru/v2/forecast?';
 
-    private $httpClient;
+    public $httpClient;
 
-    public function __construct(Client $client)
+    public function __construct(CustomHttpClient $client)
     {
        $this->httpClient = $client;
     }
@@ -24,7 +25,7 @@ class YandexWorker implements APIWorker
     {
         $getWeatherURL = $this->formWeatherURL($latitude,$longitude);
 
-        return new YandexWeather($getWeatherURL);
+        return new YandexWeather($this->getAPIWeatherData($getWeatherURL));
     }
 
 
@@ -41,8 +42,6 @@ class YandexWorker implements APIWorker
               ]
         ];
 
-        $response = $this->httpClient->get($getWeatherURL,$headersArray);
-
-        return (string) $response->getBody();
+        return $this->httpClient->get($getWeatherURL,$headersArray);
     }
 }

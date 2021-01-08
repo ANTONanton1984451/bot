@@ -160,7 +160,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BotMan\DriverServiceProvider::class,
-        App\Providers\ConversationServiceProvider::class
+        App\Providers\ConversationServiceProvider::class,
+        App\Providers\APIWorkerServiceProvider::class,
+        App\Providers\QuestionGeneratorServiceProvider::class
     ],
 
     /*
