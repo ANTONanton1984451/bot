@@ -29,9 +29,15 @@ class WeatherMessageFormatter
      */
     private $weatherInformation;
 
-    public function __construct()
+    /**
+     * @var APIDictionary
+     */
+    public $dictionary;
+
+    public function __construct(APIDictionary $dictionary)
     {
         $this->placeholder = config('bot_phrases.placeholder');
+        $this->dictionary = $dictionary;
     }
 
     public function getFormattedForecast(Weather $weather, int $daysCount = 1) : string
@@ -56,6 +62,7 @@ class WeatherMessageFormatter
             foreach (Weather::ONE_DAY_FIELDS as $v){
                 $phrases_key = $item[$v];
                 if (isset($phrases_key)){
+                    $phrases_key = is_string($phrases_key) ? $this->dictionary->translate($phrases_key) : $phrases_key;
                     $message.= str_replace($this->placeholder,$phrases_key,config(self::ONE_DAY_MESSAGE.'.'.$v))."\n";
                 }
             }
@@ -72,11 +79,14 @@ class WeatherMessageFormatter
         $this->setNowWeather()->formatOneDay();
         $this->getSomeDaysWeather($days);
 
+        //todo разргрести данную ахинею
+
         $formFunction = function ($item) use (&$message){
             $message .= str_replace($this->placeholder,config(self::DAY_PART_MESSAGE.'date'),$item['date']);
             foreach (Weather::DAY_PARTS as $dayPart){
-                foreach (Weather::PART_OF_DAY_FIELDS as $part){
-                    $message .= str_replace($this->placeholder,$item[$dayPart][$part],config(self::DAY_PART_MESSAGE.'.'.$part))."\n";
+                foreach (Weather::PART_OF_DAY_FIELDS as $field){
+                    $placeHolderMessage = is_string($item[$dayPart][$field]) ? $this->dictionary->translate($item[$dayPart][$field]) : $item[$dayPart][$field];
+                    $message .= str_replace($this->placeholder,$placeHolderMessage,config(self::DAY_PART_MESSAGE.'.'.$field))."\n";
                 }
             }
         };

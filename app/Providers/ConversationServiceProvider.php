@@ -77,7 +77,9 @@ class ConversationServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind(WeatherMessageFormatter::class,WeatherMessageFormatter::class);
+        $this->app->bind(WeatherMessageFormatter::class,function ($app){
+            return new WeatherMessageFormatter($app->make('Dictionary'));
+        });
 
     }
 

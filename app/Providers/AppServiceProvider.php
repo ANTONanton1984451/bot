@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\APIDictionary;
 use App\Services\CustomHttpClient;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind('HttpClient',function ($app){
             return new CustomHttpClient();
+        });
+
+        $this->app->bind('Dictionary',function ($app){
+            return new APIDictionary();
         });
     }
 }
