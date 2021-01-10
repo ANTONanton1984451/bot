@@ -79,7 +79,7 @@ class WeatherMessageFormatter
         $this->setNowWeather()->formatOneDay();
         $this->getSomeDaysWeather($days);
 
-        //todo разргрести данную ахинею
+        //todo изменить алгоритм формирования ответа
 
         $formFunction = function ($item) use (&$message){
             $message .= str_replace($this->placeholder,config(self::DAY_PART_MESSAGE.'date'),$item['date']);
