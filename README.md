@@ -14,7 +14,7 @@
 <h3>Используемые технологии :</h3>
 <ul>
 <li>
- [Botman][https://botman.io/]
+ Botman - https://botman.io/
 </li>
 <li>
     MySql
