@@ -9,6 +9,8 @@ use App\Conversations\WeatherByUserConversation;
 use App\Services\UserDeterminant;
 use BotMan\BotMan\BotMan;
 use BotMan\BotMan\Messages\Conversations\Conversation;
+use Illuminate\Support\Facades\Redis;
+use RedisClient\ClientFactory;
 
 
 class GetWeatherController extends Controller
@@ -28,6 +30,7 @@ class GetWeatherController extends Controller
 
     public function showWeather(BotMan $bot)
     {
+        Redis::set('test:2:string','foo');
         $this->determinant->setBot($bot);
 
         $this->determinant->isUserDetermine()?$this->getWeatherForDetermineUser($bot):$this->askLocation($bot);

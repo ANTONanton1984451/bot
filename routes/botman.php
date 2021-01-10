@@ -7,22 +7,11 @@ $botman->hears('/start',\App\Http\Controllers\IntroductionController::class.'@st
 
 $botman->hears('/weather',\App\Http\Controllers\GetWeatherController::class.'@showWeather');
 
-$botman->hears('Hi', function ($bot) {
-    $bot->reply(file_get_contents('https://yandex.ru'));
-});
 
-
-$botman->hears('Hello BotMan!', function($bot) {
-    $bot->reply('Hello!');
-    $bot->ask('Whats your name?', function($answer, $bot) {
-        $bot->say('Welcome '.$answer->getText());
-    });
-});
 
 
 
 $botman->hears('Start conversation', BotManController::class.'@startConversation');
-
 
 
 $botman->fallback(function ($bot) {
